@@ -3,20 +3,19 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/custom_button.dart';
-import '../../main.dart';
 
 
 enum Auth {
   signin,
   signup,
 }
-class AuthScreen extends StatefulWidget{
+class Home extends StatefulWidget{
   static const String routename = '/auth';
-   const AuthScreen({Key? key}) :super(key:key);
+  const Home({Key? key}) :super(key:key);
   @override
-  State<StatefulWidget> createState()=>_AuthScreenState();
+  State<StatefulWidget> createState()=>HomeState();
 }
-class _AuthScreenState extends State<AuthScreen> {
+class HomeState extends State<Home> {
   Auth _auth = Auth.signup;
   final _signUpFormkey = GlobalKey<FormState>();
   final _signInFormkey = GlobalKey<FormState>();
@@ -40,9 +39,9 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Welcome"  ,style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500
+              Text("Home"  ,style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500
               ),),
               ListTile(
                 tileColor: _auth == Auth.signup ? GlobalVariables.backgroundColor:GlobalVariables.greyBackgroundCOlor,
@@ -50,15 +49,15 @@ class _AuthScreenState extends State<AuthScreen> {
                   fontWeight: FontWeight.bold,
                 ),),
                 leading: Radio(
-                  activeColor: GlobalVariables.secondaryColor,
-                  value: Auth.signup ,
-                  groupValue:_auth,
-                  onChanged: (Auth? val){
-                    setState(() {
-                      _auth = val!;
-                    });
+                    activeColor: GlobalVariables.secondaryColor,
+                    value: Auth.signup ,
+                    groupValue:_auth,
+                    onChanged: (Auth? val){
+                      setState(() {
+                        _auth = val!;
+                      });
 
-                }
+                    }
                 ),
               ),
               if(_auth == Auth.signup)
@@ -73,7 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         SizedBox(height: 10,),
                         CustomtextField(controller: _passwordcontroller, hintText: 'Password',),
                         SizedBox(height: 10,),
-                       CustomtextField(controller: _namecontroller, hintText: 'name',),
+                        CustomtextField(controller: _namecontroller, hintText: 'name',),
                         SizedBox(height: 10,),
                         Custombutton(
                           text: 'Sign Up',
@@ -110,30 +109,30 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               if(_auth == Auth.signin)
-              Container(
-                padding: EdgeInsets.all(8),
-                color: GlobalVariables.backgroundColor,
-                child: Form(
-                  key: _signUpFormkey,
-                  child: Column(
-                    children: [
-                      CustomtextField(controller: _emailcontroller, hintText: 'Email',),
-                      SizedBox(height: 10,),
-                      CustomtextField(controller: _passwordcontroller, hintText: 'Password',),
-                      SizedBox(height: 10,),
+                Container(
+                  padding: EdgeInsets.all(8),
+                  color: GlobalVariables.backgroundColor,
+                  child: Form(
+                    key: _signUpFormkey,
+                    child: Column(
+                      children: [
+                        CustomtextField(controller: _emailcontroller, hintText: 'Email',),
+                        SizedBox(height: 10,),
+                        CustomtextField(controller: _passwordcontroller, hintText: 'Password',),
+                        SizedBox(height: 10,),
 
-                      Custombutton(
-                        text: 'Sign in',
-                        onTap: (){
+                        Custombutton(
+                          text: 'Sign in',
+                          onTap: (){
 
-                        },
-                      )
-                    ],
+                          },
+                        )
+                      ],
+
+                    ),
 
                   ),
-
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.only( top: 20),
                 child: Container(
@@ -141,7 +140,6 @@ class _AuthScreenState extends State<AuthScreen> {
                     text: 'Sign in With Google',
 
                     onTap: (){
-                      signInWithGoogle(context);
 
                     },
                   ),
